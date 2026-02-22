@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="metaTitle">Ինչպե՞ս սկսել խնայել զրոյից - FinSmart Armenia</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --dark: #1a1a1a; 
+            --white: #ffffff; 
+            --bg: #f4f7f6; 
+            --text: #333;
+            --soft-gold: #fffcf0;
+            --card-bg: white;
+        }
+
+        body.dark-mode {
+            --bg: #121212;
+            --text: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --soft-gold: #252525;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background: var(--bg); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text); 
+            line-height: 1.8; 
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        header { 
+            background: var(--dark); 
+            color: white; 
+            text-align: center; 
+            padding: 60px 20px; 
+            border-bottom: 5px solid var(--gold); 
+            position: relative;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 110;
+        }
+
+        .logo-svg {
+            height: 65px;
+            width: auto;
+        }
+
+        .settings-menu {
+            display: none;
+            position: absolute;
+            top: 75px;
+            left: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 100;
+            width: 200px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            line-height: 1.4;
+        }
+
+        .settings-menu.show { display: block; animation: fadeIn 0.3s ease; }
+
+        .settings-menu h4 {
+            margin: 0; padding: 10px; font-size: 11px;
+            text-transform: uppercase; color: var(--gold);
+            background: rgba(0,0,0,0.05); text-align: left;
+        }
+
+        .settings-menu button {
+            display: block; width: 100%; padding: 12px 15px;
+            color: var(--text); text-decoration: none; font-size: 14px;
+            background: none; border: none; text-align: left;
+            cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .settings-menu button:hover {
+            background: var(--gold); color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 { margin: 15px 0 0; font-size: 28px; }
+        header p { margin: 5px 0 0; opacity: 0.8; }
+
+        .container { 
+            max-width: 800px; 
+            margin: 30px auto; 
+            padding: 0 20px; 
+        }
+        
+        .article-content { 
+            background: var(--card-bg); 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+        }
+
+        .back-link { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            color: var(--gold); 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--dark); transform: translateX(-5px); }
+
+        h1.post-title { 
+            color: var(--dark); 
+            font-size: 32px; 
+            margin-bottom: 20px; 
+            line-height: 1.3;
+        }
+
+        body.dark-mode h1.post-title { color: var(--gold); }
+
+        .intro { 
+            font-size: 18px; 
+            color: #555; 
+            font-style: italic; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 20px; 
+            margin: 20px 0;
+        }
+
+        body.dark-mode .intro { color: #bbb; }
+
+        h2 { 
+            color: var(--dark); 
+            margin-top: 30px; 
+            font-size: 24px; 
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        body.dark-mode h2 { color: var(--white); }
+
+        .highlight-box {
+            background: var(--soft-gold);
+            border: 1px solid var(--gold);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            color: var(--text);
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        body.dark-mode .step-card { border-color: #333; }
+
+        .step-card:hover { border-color: var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        footer { 
+            background: var(--dark); 
+            color: white; 
+            text-align: center; 
+            padding: 30px; 
+            margin-top: 50px; 
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            header { padding: 90px 20px 30px; }
+            .logo-container { left: 50%; transform: translateX(-50%); top: 10px; }
+            .settings-menu { left: 50%; transform: translateX(-50%); top: 80px; }
+            .article-content { padding: 20px; }
+            h1.post-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="toggleLogoMenu()">
+        <svg class="logo-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="rgb(26,26,26)"/>
+            <g transform="translate(80, 50)">
+              <rect x="0" y="55" width="16" height="30" rx="2" fill="white"/>
+              <rect x="25" y="40" width="16" height="45" rx="2" fill="white"/>
+              <rect x="50" y="20" width="16" height="65" rx="2" fill="white"/>
+              <rect x="75" y="0" width="16" height="85" rx="2" fill="white"/>
+              <path d="M -20 70 Q 30 110 95 65" stroke="white" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M -10 85 Q 40 65 90 5" stroke="#d4af37" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M 82 12 L 95 0 L 100 18 Z" fill="#d4af37"/>
+            </g>
+            <text x="200" y="115" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="white">
+              Fin<tspan fill="#d4af37">Smart</tspan>
+            </text>
+            <g transform="translate(200, 150)">
+              <line x1="0" y1="-5" x2="60" y2="-5" stroke="#999" stroke-width="2"/>
+              <text x="135" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#999" letter-spacing="5">ARMENIA</text>
+              <line x1="210" y1="-5" x2="270" y2="-5" stroke="#999" stroke-width="2"/>
+            </g>
+        </svg>
+    </div>
+
+    <div id="logoMenu" class="settings-menu">
+        <h4 data-key="menu_user">Օգտատեր</h4>
+        <button onclick="showUserData()" data-key="menu_my_data">👤 ԻՄ ՏՎՅԱԼՆԵՐԸ</button>
+        <h4 data-key="menu_lang">Լեզու / Language</h4>
+        <button onclick="changeLang('am')">🇦🇲 ARMENIAN</button>
+        <button onclick="changeLang('ru')">🇷🇺 RUSSIAN</button>
+        <button onclick="changeLang('en')">🇺🇸 ENGLISH</button>
+        <h4 data-key="menu_settings">Կարգավորումներ</h4>
+        <button onclick="toggleDarkMode()" data-key="menu_night_mode">🌙 Գիշերային ռեժիմ</button>
+    </div>
+
+    <h1>FinSmart Armenia</h1>
+    <p id="mainSub">Կառավարեք ձեր ֆինանսները խելացի տարբերակով</p>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-link" id="backBtn">← Վերադառնալ հաշվիչին</a>
+
+    <article class="article-content" id="articleBody">
+        </article>
+</div>
+
+<footer>
+    &copy; 2026 FinSmart Armenia | <a href="privacy.html" data-key="privacy">Գաղտնիություն</a>
+</footer>
+
+<script>
+    const translations = {
+        am: {
+            mainSub: "Կառավարեք ձեր ֆինանսները խելացի տարբերակով",
+            back: "← Վերադառնալ հաշվիչին",
+            menu_user: "Օգտատեր",
+            menu_my_data: "👤 ԻՄ ՏՎՅԱԼՆԵՐԸ",
+            menu_lang: "Լեզու / Language",
+            menu_settings: "Կարգավորումներ",
+            menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            privacy: "Գաղտնիություն",
+            content: `
+                <h1 class="post-title">💰 Ինչպե՞ս սկսել խնայել զրոյից — Գործնական ուղեցույց</h1>
+                <p class="intro">Շատերը կարծում են, թե խնայելը հնարավոր է միայն մեծ եկամուտ ունենալու դեպքում։ Սակայն իրականում ամեն ինչ սկսվում է ճիշտ սովորություններից։</p>
+                <p>Նույնիսկ եթե հիմա թվում է, որ գումար չի մնում, ճիշտ կառավարման դեպքում կարելի է սկսել զրոյից։ Ֆինանսական անկախությունը սկսվում է առաջին իսկ խնայված դրամից:</p>
+                <h2>Քայլ 1. Ծախսերի վերահսկում</h2>
+                <p>Առաջին քայլը ծախսերի վերահսկումն է։ Մեկ ամսվա ընթացքում գրանցիր բոլոր ծախսերդ և տես, թե ուր է գնում գումարդ։ Այդպես կհասկանաս, թե որտեղ կարելի է կրճատել ավելորդ գնումները։</p>
+                <div class="highlight-box">
+                    <strong>Ուշադրություն.</strong> Փոքր, բայց հաճախակի ծախսերը (օրինակ՝ ամենօրյա սուրճը դրսում) հաճախ ամենաշատն են խանգարում խնայելուն։
+                </div>
+                <h2>Քայլ 2. Սկսիր փոքրից</h2>
+                <p>Սկսիր փոքրից՝ թեկուզ եկամուտիդ 5–10 տոկոսը առանձնացնելով։ Կարևորն այն չէ, թե որքան ես խնայում, այլ այն, որ դա դառնա մշտական սովորություն։</p>
+                <div class="step-card">
+                    <strong>Ամփոփում.</strong> Խնայելը ոչ թե սահմանափակում է, այլ ֆինանսական կայունության և վստահության աղբյուր։
+                </div>
+            `
+        },
+        ru: {
+            mainSub: "Управляйте своими финансами с умом",
+            back: "← Вернуться к калькулятору",
+            menu_user: "Пользователь",
+            menu_my_data: "👤 МОИ ДАННЫЕ",
+            menu_lang: "Язык / Language",
+            menu_settings: "Настройки",
+            menu_night_mode: "🌙 Ночной режим",
+            privacy: "Конфиденциальность",
+            content: `
+                <h1 class="post-title">💰 Как начать копить с нуля — Практическое руководство</h1>
+                <p class="intro">Многие думают, что копить можно только при больших доходах. Однако на самом деле все начинается с правильных привычек.</p>
+                <p>Даже если сейчас кажется, что денег не остается, при правильном управлении можно начать с нуля. Финансовая свобода начинается с первого сэкономленного рубля.</p>
+                <h2>Шаг 1. Контроль расходов</h2>
+                <p>Первый шаг — это аудит ваших трат. В течение месяца записывайте все расходы. Это поможет понять, где можно сократить лишние покупки.</p>
+                <div class="highlight-box">
+                    <strong>Внимание:</strong> Мелкие, но частые траты (например, ежедневный кофе вне дома) часто мешают накоплениям больше всего.
+                </div>
+                <h2>Шаг 2. Начните с малого</h2>
+                <p>Начните хотя бы с 5–10% от дохода. Важна не сумма, а регулярность привычки.</p>
+                <div class="step-card">
+                    <strong>Итог:</strong> Накопления — это не ограничение, а источник финансовой стабильности и уверенности.
+                </div>
+            `
+        },
+        en: {
+            mainSub: "Manage your finances the smart way",
+            back: "← Back to Calculator",
+            menu_user: "User",
+            menu_my_data: "👤 MY DATA",
+            menu_lang: "Language / Language",
+            menu_settings: "Settings",
+            menu_night_mode: "🌙 Night Mode",
+            privacy: "Privacy",
+            content: `
+                <h1 class="post-title">💰 How to Start Saving from Scratch — Practical Guide</h1>
+                <p class="intro">Many believe that saving is only possible with a high income. However, it actually starts with the right habits.</p>
+                <p>Even if it feels like there’s no money left at the end of the month, proper management allows anyone to start from zero.</p>
+                <h2>Step 1. Track Your Expenses</h2>
+                <p>The first step is controlling your outgoings. Record every expense for a month to see where your money is going. This reveals where you can cut unnecessary spending.</p>
+                <div class="highlight-box">
+                    <strong>Attention:</strong> Small but frequent expenses (like daily coffee out) often hinder savings the most.
+                </div>
+                <h2>Step 2. Start Small</h2>
+                <p>Start by setting aside just 5–10% of your income. The amount matters less than building the consistent habit.</p>
+                <div class="step-card">
+                    <strong>Summary:</strong> Saving is not about limitation; it is a source of financial stability and confidence.
+                </div>
+            `
+        }
+    };
+
+    function applyLanguage() {
+        const lang = localStorage.getItem('lang') || 'am';
+        const data = translations[lang];
+
+        document.getElementById('mainSub').innerText = data.mainSub;
+        document.getElementById('backBtn').innerText = data.back;
+        document.getElementById('articleBody').innerHTML = data.content;
+        
+        // Մենյուի թարգմանություն
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (data[key]) el.innerText = data[key];
+        });
+    }
+
+    function changeLang(lang) {
+        localStorage.setItem('lang', lang);
+        applyLanguage();
+        toggleLogoMenu();
+    }
+
+    function toggleLogoMenu() { document.getElementById('logoMenu').classList.toggle('show'); }
+    
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+
+    function showUserData() {
+        const name = localStorage.getItem('finSmartName') || "Գրանցված չէ / Not registered";
+        alert("Օգտատեր: " + name);
+        document.getElementById('logoMenu').classList.remove('show');
+    }
+
+    window.onclick = function(e) {
+        if (!e.target.closest('.logo-container')) {
+            document.getElementById('logoMenu').classList.remove('show');
+        }
+    };
+
+    // Ինիցիալիզացիա
+    window.onload = function() {
+        if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark-mode');
+        applyLanguage();
+    };
+</script>
+
+</body>
+</html>

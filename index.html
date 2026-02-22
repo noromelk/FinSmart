@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSmart Armenia</title>
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --dark: #1a1a1a; 
+            --bg: #f4f7f6; 
+            --text: #333; 
+            --card-bg: white;
+        }
+
+        body.dark-mode {
+            --bg: #121212;
+            --text: #e0e0e0;
+            --card-bg: #1e1e1e;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background: var(--bg); 
+            margin: 0; 
+            color: var(--text); 
+            line-height: 1.6; 
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        header { 
+            background: var(--dark); 
+            color: white; 
+            text-align: center; 
+            padding: 60px 20px; 
+            border-bottom: 5px solid var(--gold); 
+            position: relative;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 110;
+        }
+
+        .logo-svg {
+            height: 65px;
+            width: auto;
+        }
+
+        .settings-menu {
+            display: none;
+            position: absolute;
+            top: 75px;
+            left: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 100;
+            width: 200px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+        }
+
+        .settings-menu.show { display: block; animation: fadeIn 0.3s ease; }
+
+        .settings-menu h4 {
+            margin: 0; padding: 10px; font-size: 11px;
+            text-transform: uppercase; color: var(--gold);
+            background: rgba(0,0,0,0.05); text-align: left;
+        }
+
+        .settings-menu button {
+            display: block; width: 100%; padding: 12px 15px;
+            color: var(--text); text-decoration: none; font-size: 14px;
+            background: none; border: none; text-align: left;
+            cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .settings-menu button:hover {
+            background: var(--gold); color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 { margin: 15px 0 0; font-size: 2.5em; letter-spacing: 1px; }
+        header p { margin: 5px 0 0; opacity: 0.8; }
+
+        .container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
+        
+        .card { 
+            background: var(--card-bg); padding: 30px; border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); margin-bottom: 30px; 
+        }
+
+        input { 
+            width: 100%; padding: 12px; margin: 10px 0; 
+            border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; 
+            background: var(--card-bg); color: var(--text);
+        }
+
+        .calc-btn { 
+            width: 100%; padding: 15px; background: var(--gold); color: white; 
+            border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; 
+        }
+        .calc-btn:hover { background: #b8962d; transform: translateY(-2px); }
+
+        .action-btn { background: none; margin-top: 15px; border: none; cursor: pointer; font-weight: bold; font-size: 14px; }
+        .delete-style { color: #d9534f; }
+        .register-style { color: #2e7d32; }
+
+        .result-box { 
+            display: none; margin-top: 20px; padding: 15px; 
+            background: #e8f5e9; border-left: 5px solid #2e7d32; border-radius: 8px; color: #333;
+        }
+
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: var(--gold); color: white; }
+        .trend-up { color: #d9534f; font-weight: bold; }
+        .trend-down { color: #2e7d32; font-weight: bold; }
+
+        .article-card { 
+            background: var(--card-bg); padding: 25px; border-radius: 12px; 
+            border-left: 6px solid var(--gold); margin-bottom: 20px;
+            transition: 0.3s; cursor: pointer; text-decoration: none; display: block; color: inherit;
+        }
+        .article-card:hover { transform: translateX(8px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
+        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px; border-radius: 15px; max-width: 350px; text-align: center; border-top: 6px solid var(--gold); }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 30px; margin-top: 50px; }
+
+        @media (max-width: 600px) {
+            header { padding: 90px 20px 30px; }
+            header h1 { font-size: 1.8em; }
+            .logo-container { left: 50%; transform: translateX(-50%); top: 10px; }
+            .settings-menu { left: 50%; transform: translateX(-50%); top: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="toggleLogoMenu()">
+        <svg class="logo-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="rgb(26,26,26)"/>
+            <g transform="translate(80, 50)">
+              <rect x="0" y="55" width="16" height="30" rx="2" fill="white"/>
+              <rect x="25" y="40" width="16" height="45" rx="2" fill="white"/>
+              <rect x="50" y="20" width="16" height="65" rx="2" fill="white"/>
+              <rect x="75" y="0" width="16" height="85" rx="2" fill="white"/>
+              <path d="M -20 70 Q 30 110 95 65" stroke="white" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M -10 85 Q 40 65 90 5" stroke="#d4af37" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M 82 12 L 95 0 L 100 18 Z" fill="#d4af37"/>
+            </g>
+            <text x="200" y="115" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="white">
+              Fin<tspan fill="#d4af37">Smart</tspan>
+            </text>
+            <g transform="translate(200, 150)">
+              <line x1="0" y1="-5" x2="60" y2="-5" stroke="#999" stroke-width="2"/>
+              <text x="135" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#999" letter-spacing="5">ARMENIA</text>
+              <line x1="210" y1="-5" x2="270" y2="-5" stroke="#999" stroke-width="2"/>
+            </g>
+        </svg>
+    </div>
+
+    <div id="logoMenu" class="settings-menu">
+        <h4 data-key="menu_user">Օգտատեր</h4>
+        <button onclick="showUserData()" data-key="menu_my_data">👤 ԻՄ ՏՎՅԱԼՆԵՐԸ</button>
+        <h4 data-key="menu_lang">Լեզու / Language</h4>
+        <button onclick="changeLang('am')">🇦🇲 ARMENIAN</button>
+        <button onclick="changeLang('ru')">🇷🇺 RUSSIAN</button>
+        <button onclick="changeLang('en')">🇺🇸 ENGLISH</button>
+        <h4 data-key="menu_settings">Կարգավորումներ</h4>
+        <button onclick="toggleDarkMode()" data-key="menu_night_mode">🌙 Գիշերային ռեժիմ</button>
+    </div>
+    
+    <h1 id="mainTitle">FinSmart Armenia</h1>
+    <p id="mainSub">Կառավարեք ձեր ֆինանսները խելացի տարբերակով</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2 data-key="calc_title">📊 Ֆինանսական Հաշվիչ</h2>
+        <input type="number" id="income" placeholder="Ամսական Եկամուտ (֏)" data-placeholder="input_income">
+        <input type="number" id="expenses" placeholder="Ամսական Ծախսեր (֏)" data-placeholder="input_expenses">
+        <button class="calc-btn" onclick="calculate()" data-key="btn_calc">Հաշվարկել և Պահպանել</button>
+        <div id="result" class="result-box"><p id="res-text"></p></div>
+    </div>
+
+    <div class="card">
+        <h3 data-key="history_title">📈 Գործողությունների Պատմություն</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-key="th_date">Ամսաթիվ</th>
+                        <th data-key="th_inc">Եկամուտ</th>
+                        <th data-key="th_exp">Ծախս</th>
+                        <th data-key="th_trend">Դինամիկա</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <a href="tips1.html" class="article-card">
+        <h3 data-key="tip1_title">1. Ինչպե՞ս սկսել խնայել զրոյից ➔</h3>
+        <p data-key="tip1_desc">Բացահայտեք պարզ քայլեր ձեր առաջին խնայողությունները ստեղծելու համար:</p>
+    </a>
+
+    <a href="tips2.html" class="article-card">
+        <h3 data-key="tip2_title">2. Ծախսերի օպտիմալացում ➔</h3>
+        <p data-key="tip2_desc">Ինչպես կրճատել ավելորդ ծախսերը առանց կյանքի որակը փոխելու:</p>
+    </a>
+
+    <a href="tips3.html" class="article-card">
+        <h3 data-key="tip3_title">3. Ներդրումներ Հայաստանում ➔</h3>
+        <p data-key="tip3_desc">Ինչպե՞ս ստիպել գումարին աշխատել ձեզ համար (պարտատոմսեր, ավանդներ և այլն)։</p>
+    </a>
+</div>
+
+<div id="regModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="reg_title">📥 Գրանցում</h3>
+        <form id="regForm">
+            <input type="text" id="userName" placeholder="Անուն" data-placeholder="reg_name_ph" required>
+            <input type="email" id="userEmail" placeholder="Էլ. հասցե" data-placeholder="reg_email_ph" required>
+            <button type="submit" class="calc-btn" data-key="btn_save">Պահպանել</button>
+        </form>
+        <button onclick="closeModal()" style="background:none; color:gray; margin-top:15px; border:none; cursor:pointer;" data-key="btn_close">Փակել</button>
+    </div>
+</div>
+
+<div id="userDataModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="my_data_title">👤 Իմ Տվյալները</h3>
+        <div id="userDataContent" style="background: rgba(0,0,0,0.05); padding:15px; border-radius:8px; margin:15px 0; text-align:left;"></div>
+        <button onclick="closeUserDataModal()" class="calc-btn" data-key="btn_ok">Լավ</button>
+        <div id="dynamicActionBtn"></div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 FinSmart Armenia | <a href="privacy.html" style="color:var(--gold)" data-key="privacy">Գաղտնիություն</a>
+</footer>
+
+<script>
+    const translations = {
+        am: {
+            main_sub: "Կառավարեք ձեր ֆինանսները խելացի տարբերակով",
+            menu_user: "Օգտատեր",
+            menu_my_data: "👤 ԻՄ ՏՎՅԱԼՆԵՐԸ",
+            menu_lang: "Լեզու / Language",
+            menu_settings: "Կարգավորումներ",
+            menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            calc_title: "📊 Ֆինանսական Հաշվիչ",
+            input_income: "Ամսական Եկամուտ (֏)",
+            input_expenses: "Ամսական Ծախսեր (֏)",
+            btn_calc: "Հաշվարկել և Պահպանել",
+            history_title: "📈 Գործողությունների Պատմություն",
+            th_date: "Ամսաթիվ",
+            th_inc: "Եկամուտ",
+            th_exp: "Ծախս",
+            th_trend: "Դինամիկա",
+            tip1_title: "1. Ինչպե՞ս սկսել խնայել զրոյից ➔",
+            tip1_desc: "Բացահայտեք պարզ քայլեր ձեր առաջին խնայողությունները ստեղծելու համար:",
+            tip2_title: "2. Ծախսերի օպտիմալացում ➔",
+            tip2_desc: "Ինչպես կրճատել ավելորդ ծախսերը առանց կյանքի որակը փոխելու:",
+            tip3_title: "3. Ներդրումներ Հայաստանում ➔",
+            tip3_desc: "Ինչպե՞ս ստիպել գումարին աշխատել ձեզ համար (պարտատոմսեր, ավանդներ և այլն)։",
+            reg_title: "📥 Գրանցում",
+            reg_name_ph: "Անուն",
+            reg_email_ph: "Էլ. հասցե",
+            btn_save: "Պահպանել",
+            btn_close: "Փակել",
+            my_data_title: "👤 Իմ Տվյալները",
+            btn_ok: "Լավ",
+            privacy: "Գաղտնիություն",
+            free_money: "Ազատ գումար",
+            trend_up: "↑ աճ",
+            trend_down: "↓ նվազում",
+            no_reg: "Դուք դեռ գրանցված չեք:",
+            btn_clear: "Ջնջել ամբողջը",
+            btn_reg_now: "Գրանցվել"
+        },
+        ru: {
+            main_sub: "Управляйте своими финансами с умом",
+            menu_user: "Пользователь",
+            menu_my_data: "👤 МОИ ДАННЫЕ",
+            menu_lang: "Язык / Language",
+            menu_settings: "Настройки",
+            menu_night_mode: "🌙 Ночной режим",
+            calc_title: "📊 Финансовый калькулятор",
+            input_income: "Ежемесячный доход (֏)",
+            input_expenses: "Ежемесячные расходы (֏)",
+            btn_calc: "Рассчитать и сохранить",
+            history_title: "📈 История операций",
+            th_date: "Дата",
+            th_inc: "Доход",
+            th_exp: "Расход",
+            th_trend: "Динамика",
+            tip1_title: "1. Как начать копить с нуля ➔",
+            tip1_desc: "Простые шаги для создания ваших первых сбережений.",
+            tip2_title: "2. Оптимизация расходов ➔",
+            tip2_desc: "Как сократить лишние траты без потери качества жизни.",
+            tip3_title: "3. Инвестиции в Армении ➔",
+            tip3_desc: "Как заставить деньги работать на вас (облигации, вклады и т.д.).",
+            reg_title: "📥 Регистрация",
+            reg_name_ph: "Имя",
+            reg_email_ph: "Эл. почта",
+            btn_save: "Сохранить",
+            btn_close: "Закрыть",
+            my_data_title: "👤 Мои данные",
+            btn_ok: "Ок",
+            privacy: "Конфиденциальность",
+            free_money: "Свободные деньги",
+            trend_up: "↑ рост",
+            trend_down: "↓ снижение",
+            no_reg: "Вы еще не зарегистрированы:",
+            btn_clear: "Удалить всё",
+            btn_reg_now: "Зарегистрироваться"
+        },
+        en: {
+            main_sub: "Manage your finances the smart way",
+            menu_user: "User",
+            menu_my_data: "👤 MY DATA",
+            menu_lang: "Language / Language",
+            menu_settings: "Settings",
+            menu_night_mode: "🌙 Night Mode",
+            calc_title: "📊 Finance Calculator",
+            input_income: "Monthly Income (֏)",
+            input_expenses: "Monthly Expenses (֏)",
+            btn_calc: "Calculate & Save",
+            history_title: "📈 Operation History",
+            th_date: "Date",
+            th_inc: "Income",
+            th_exp: "Expense",
+            th_trend: "Trend",
+            tip1_title: "1. How to start saving from scratch ➔",
+            tip1_desc: "Discover simple steps to create your first savings.",
+            tip2_title: "2. Expense Optimization ➔",
+            tip2_desc: "How to cut unnecessary costs without changing quality of life.",
+            tip3_title: "3. Investing in Armenia ➔",
+            tip3_desc: "How to make money work for you (bonds, deposits, etc.).",
+            reg_title: "📥 Registration",
+            reg_name_ph: "Name",
+            reg_email_ph: "Email",
+            btn_save: "Save",
+            btn_close: "Close",
+            my_data_title: "👤 My Data",
+            btn_ok: "OK",
+            privacy: "Privacy",
+            free_money: "Free money",
+            trend_up: "↑ up",
+            trend_down: "↓ down",
+            no_reg: "You are not registered yet:",
+            btn_clear: "Clear All",
+            btn_reg_now: "Register Now"
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'am';
+
+    function changeLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        applyLanguage();
+        toggleLogoMenu();
+    }
+
+    function applyLanguage() {
+        const langData = translations[currentLang];
+        
+        // Տեքստեր
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (langData[key]) el.innerText = langData[key];
+        });
+
+        // Placeholder-ներ
+        document.querySelectorAll('[data-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-placeholder');
+            if (langData[key]) el.placeholder = langData[key];
+        });
+
+        document.getElementById('mainSub').innerText = langData.main_sub;
+        updateTable(); // Թարմացնել աղյուսակը՝ լեզվի փոփոխության համար
+    }
+
+    function toggleLogoMenu() { document.getElementById('logoMenu').classList.toggle('show'); }
+    
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+
+    function showUserData() {
+        const savedName = localStorage.getItem('finSmartName');
+        const savedEmail = localStorage.getItem('finSmartEmail');
+        const contentDiv = document.getElementById('userDataContent');
+        const actionDiv = document.getElementById('dynamicActionBtn');
+        const langData = translations[currentLang];
+
+        if (savedName && savedEmail) {
+            contentDiv.innerHTML = `<p><strong>${langData.reg_name_ph}:</strong> ${savedName}</p><p><strong>${langData.reg_email_ph}:</strong> ${savedEmail}</p>`;
+            actionDiv.innerHTML = `<button onclick="clearAllData()" class="action-btn delete-style">${langData.btn_clear}</button>`;
+        } else {
+            contentDiv.innerHTML = `<p>${langData.no_reg}</p>`;
+            actionDiv.innerHTML = `<button onclick="openRegistration()" class="action-btn register-style">${langData.btn_reg_now}</button>`;
+        }
+        document.getElementById('userDataModal').style.display = 'block';
+        document.getElementById('logoMenu').classList.remove('show');
+    }
+
+    function openRegistration() { closeUserDataModal(); document.getElementById('regModal').style.display = 'block'; }
+    function closeModal() { document.getElementById('regModal').style.display = 'none'; }
+    function closeUserDataModal() { document.getElementById('userDataModal').style.display = 'none'; }
+
+    function calculate() {
+        const inc = parseFloat(document.getElementById('income').value) || 0;
+        const exp = parseFloat(document.getElementById('expenses').value) || 0;
+        const langData = translations[currentLang];
+
+        if (inc > 0 || exp > 0) {
+            const balance = inc - exp;
+            const percent = Math.round((balance / inc) * 100) || 0;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('res-text').innerHTML = `${langData.free_money}: <b>${balance.toLocaleString()} ֏</b> (${percent}%)`;
+            
+            saveToHistory(inc, exp);
+            if(!localStorage.getItem('finSmartName')) {
+                setTimeout(() => { document.getElementById('regModal').style.display = 'block'; }, 1000);
+            }
+        }
+    }
+
+    function saveToHistory(inc, exp) {
+        let history = JSON.parse(localStorage.getItem('finHistory')) || [];
+        const entry = { date: new Date().toLocaleDateString(), inc: inc, exp: exp };
+        history.push(entry);
+        localStorage.setItem('finHistory', JSON.stringify(history));
+        updateTable();
+    }
+
+    function updateTable() {
+        const history = JSON.parse(localStorage.getItem('finHistory')) || [];
+        const tbody = document.getElementById('historyBody');
+        const langData = translations[currentLang];
+        tbody.innerHTML = '';
+
+        history.forEach((item, i) => {
+            let trend = "—";
+            if (i > 0) {
+                const prev = history[i-1].exp;
+                trend = item.exp > prev ? `<span class="trend-up">${langData.trend_up}</span>` : (item.exp < prev ? `<span class="trend-down">${langData.trend_down}</span>` : "—");
+            }
+            tbody.innerHTML += `<tr><td>${item.date}</td><td>${item.inc.toLocaleString()}</td><td>${item.exp.toLocaleString()}</td><td>${trend}</td></tr>`;
+        });
+    }
+
+    function clearAllData() {
+        if(confirm("Delete all?")) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+
+    document.getElementById('regForm').onsubmit = function(e) {
+        e.preventDefault();
+        localStorage.setItem('finSmartName', document.getElementById('userName').value);
+        localStorage.setItem('finSmartEmail', document.getElementById('userEmail').value);
+        closeModal();
+    };
+
+    window.onload = function() {
+        if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark-mode');
+        applyLanguage();
+    };
+
+    window.onclick = function(e) {
+        if (!e.target.closest('.logo-container') && !e.target.closest('.settings-menu')) {
+            document.getElementById('logoMenu').classList.remove('show');
+        }
+    };
+</script>
+</body>
+</html>
