@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5498044208644459"
-     crossorigin="anonymous"></script>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="metaTitle">Գաղտնիության Քաղաքականություն - FinSmart Armenia</title>
@@ -132,6 +131,14 @@
             transform: translateX(-5px);
         }
 
+        /* MODAL STYLES */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
+        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px; border-radius: 15px; max-width: 350px; text-align: center; border-top: 6px solid var(--gold); position: relative; }
+        
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: var(--card-bg); color: var(--text); }
+        .calc-btn { width: 100%; padding: 15px; background: var(--gold); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .calc-btn:hover { background: #b8962d; }
+
         footer {
             background: var(--dark);
             color: white;
@@ -190,8 +197,29 @@
 
 <div class="content-wrapper">
     <div id="policyBody">
-        </div>
+    </div>
     <a href="index.html" class="back-btn" id="backBtn">← Վերադառնալ գլխավոր էջ</a>
+</div>
+
+<div id="regModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="reg_title">📥 Գրանցում</h3>
+        <form id="regForm">
+            <input type="text" id="userName" placeholder="Անուն" data-placeholder="reg_name_ph" required>
+            <input type="email" id="userEmail" placeholder="Էլ. հասցե" data-placeholder="reg_email_ph" required>
+            <button type="submit" class="calc-btn" data-key="btn_save">Պահպանել</button>
+        </form>
+        <button onclick="closeModal('regModal')" style="background:none; color:gray; margin-top:15px; border:none; cursor:pointer;" data-key="btn_close">Փակել</button>
+    </div>
+</div>
+
+<div id="userDataModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="my_data_title">👤 Իմ Տվյալները</h3>
+        <div id="userDataContent" style="background: rgba(0,0,0,0.05); padding:15px; border-radius:8px; margin:15px 0; text-align:left;"></div>
+        <button onclick="closeModal('userDataModal')" class="calc-btn" data-key="btn_ok">Լավ</button>
+        <div id="dynamicActionBtn"></div>
+    </div>
 </div>
 
 <footer>
@@ -208,6 +236,14 @@
             menu_lang: "Լեզու / Language",
             menu_settings: "Կարգավորումներ",
             menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            reg_title: "📥 Գրանցում",
+            reg_name_ph: "Անուն",
+            reg_email_ph: "Էլ. հասցե",
+            btn_save: "Պահպանել",
+            btn_close: "Փակել",
+            my_data_title: "👤 Իմ Տվյալները",
+            btn_ok: "Լավ",
+            btn_clear: "Ջնջել ամբողջը",
             content: `
                 <h2>1. Ընդհանուր տեղեկություններ</h2>
                 <p>FinSmart Armenia հարթակում մենք առաջնահերթություն ենք համարում մեր այցելուների գաղտնիությունը: Այս փաստաթուղթը պարունակում է տեղեկատվության տեսակների մասին, որոնք հավաքվում և գրանցվում են մեր կողմից:</p>
@@ -224,9 +260,17 @@
             back: "← На главную",
             menu_user: "Пользователь",
             menu_my_data: "👤 МОИ ДАННЫЕ",
-            menu_lang: "Язык / Language",
+            menu_lang: "Язык",
             menu_settings: "Настройки",
             menu_night_mode: "🌙 Ночной режим",
+            reg_title: "📥 Регистрация",
+            reg_name_ph: "Имя",
+            reg_email_ph: "Эл. почта",
+            btn_save: "Сохранить",
+            btn_close: "Закрыть",
+            my_data_title: "👤 Мои данные",
+            btn_ok: "Ок",
+            btn_clear: "Удалить всё",
             content: `
                 <h2>1. Общая информация</h2>
                 <p>На платформе FinSmart Armenia мы уделяем приоритетное внимание конфиденциальности наших посетителей.</p>
@@ -243,9 +287,17 @@
             back: "← Back to Home",
             menu_user: "User",
             menu_my_data: "👤 MY DATA",
-            menu_lang: "Language / Language",
+            menu_lang: "Language",
             menu_settings: "Settings",
             menu_night_mode: "🌙 Night Mode",
+            reg_title: "📥 Registration",
+            reg_name_ph: "Name",
+            reg_email_ph: "Email",
+            btn_save: "Save",
+            btn_close: "Close",
+            my_data_title: "👤 My Data",
+            btn_ok: "OK",
+            btn_clear: "Clear All",
             content: `
                 <h2>1. General Information</h2>
                 <p>At FinSmart Armenia, one of our main priorities is the privacy of our visitors.</p>
@@ -271,6 +323,10 @@
             const key = el.getAttribute('data-key');
             if (data[key]) el.innerText = data[key];
         });
+        document.querySelectorAll('[data-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-placeholder');
+            if (data[key]) el.placeholder = data[key];
+        });
     }
 
     function changeLang(lang) {
@@ -287,14 +343,47 @@
     }
 
     function showUserData() {
+        const savedName = localStorage.getItem('finSmartName');
+        const savedEmail = localStorage.getItem('finSmartEmail');
+        const contentDiv = document.getElementById('userDataContent');
+        const actionDiv = document.getElementById('dynamicActionBtn');
         const lang = localStorage.getItem('lang') || 'am';
-        const msg = lang === 'am' ? "Ձեր տվյալները պահվում են միայն ձեր սարքում։" : (lang === 'ru' ? "Данные хранятся только на вашем устройстве." : "Data is stored only on your device.");
-        alert(msg);
-        document.getElementById('logoMenu').classList.remove('show');
+        const langData = translations[lang];
+
+        toggleLogoMenu();
+
+        if (savedName && savedEmail) {
+            contentDiv.innerHTML = `<p><strong>${langData.reg_name_ph}:</strong> ${savedName}</p><p><strong>${langData.reg_email_ph}:</strong> ${savedEmail}</p>`;
+            actionDiv.innerHTML = `<button onclick="clearAllData()" class="calc-btn" style="background:#d9534f; margin-top:10px;">${langData.btn_clear}</button>`;
+            document.getElementById('userDataModal').style.display = 'block';
+        } else {
+            document.getElementById('regModal').style.display = 'block';
+        }
     }
 
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    function clearAllData() {
+        const lang = localStorage.getItem('lang') || 'am';
+        const confirmMsg = lang === 'am' ? "Ջնջե՞լ տվյալները:" : (lang === 'ru' ? "Удалить данные?" : "Clear data?");
+        if(confirm(confirmMsg)) {
+            localStorage.removeItem('finSmartName');
+            localStorage.removeItem('finSmartEmail');
+            location.reload();
+        }
+    }
+
+    document.getElementById('regForm').onsubmit = function(e) {
+        e.preventDefault();
+        localStorage.setItem('finSmartName', document.getElementById('userName').value);
+        localStorage.setItem('finSmartEmail', document.getElementById('userEmail').value);
+        closeModal('regModal');
+        const lang = localStorage.getItem('lang') || 'am';
+        alert(lang === 'am' ? "Գրանցումը հաջողվեց:" : (lang === 'ru' ? "Регистрация прошла успешно!" : "Registration successful!"));
+    };
+
     window.onclick = function(e) {
-        if (!e.target.closest('.logo-container')) {
+        if (!e.target.closest('.logo-container') && !e.target.closest('.modal-content')) {
             document.getElementById('logoMenu').classList.remove('show');
         }
     };
@@ -306,5 +395,4 @@
 </script>
 
 </body>
-
 </html>
