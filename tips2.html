@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5498044208644459"
-     crossorigin="anonymous"></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="metaTitle">Ինչպե՞ս խնայել Հայաստանում - FinSmart Armenia</title>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
     <style>
         :root { 
@@ -30,8 +27,7 @@
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
             background: var(--bg); 
-            margin: 0; 
-            padding: 0; 
+            margin: 0; padding: 0; 
             color: var(--text); 
             line-height: 1.8; 
             transition: background 0.3s, color 0.3s;
@@ -54,10 +50,7 @@
             z-index: 110;
         }
 
-        .logo-svg {
-            height: 65px;
-            width: auto;
-        }
+        .logo-svg { height: 65px; width: auto; }
 
         .settings-menu {
             display: none;
@@ -71,7 +64,6 @@
             width: 200px;
             overflow: hidden;
             border: 1px solid var(--gold);
-            line-height: 1.4;
         }
 
         .settings-menu.show { display: block; animation: fadeIn 0.3s ease; }
@@ -90,9 +82,7 @@
             transition: 0.2s;
         }
 
-        .settings-menu button:hover {
-            background: var(--gold); color: white;
-        }
+        .settings-menu button:hover { background: var(--gold); color: white; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
@@ -102,11 +92,7 @@
         header h1 { margin: 15px 0 0; font-size: 28px; }
         header p { margin: 5px 0 0; opacity: 0.8; }
 
-        .container { 
-            max-width: 800px; 
-            margin: 30px auto; 
-            padding: 0 20px; 
-        }
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
         
         .article-content { 
             background: var(--card-bg); 
@@ -123,38 +109,21 @@
             font-weight: bold; 
             transition: 0.3s;
         }
-
         .back-link:hover { color: var(--dark); transform: translateX(-5px); }
 
-        h1.post-title { 
-            color: var(--dark); 
-            font-size: 32px; 
-            margin-bottom: 20px; 
-            line-height: 1.3;
-        }
-
+        h1.post-title { color: var(--dark); font-size: 32px; margin-bottom: 20px; line-height: 1.3; }
         body.dark-mode h1.post-title { color: var(--gold); }
 
         .intro { 
-            font-size: 18px; 
-            color: #555; 
-            font-style: italic; 
-            border-left: 4px solid var(--gold); 
-            padding-left: 20px; 
-            margin: 20px 0;
+            font-size: 18px; color: #555; font-style: italic; 
+            border-left: 4px solid var(--gold); padding-left: 20px; margin: 20px 0;
         }
-
         body.dark-mode .intro { color: #bbb; }
 
         h2 { 
-            color: var(--dark); 
-            margin-top: 30px; 
-            font-size: 24px; 
-            border-bottom: 2px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 5px;
+            color: var(--dark); margin-top: 30px; font-size: 24px; 
+            border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px;
         }
-
         body.dark-mode h2 { color: var(--white); }
 
         .tip-box {
@@ -166,40 +135,22 @@
             color: var(--text);
         }
 
-        .check-list {
-            list-style: none;
-            padding: 0;
-        }
+        .check-list { list-style: none; padding: 0; }
+        .check-list li { margin-bottom: 10px; }
+        .check-list li::before { content: "✅"; margin-right: 10px; }
 
-        .check-list li::before {
-            content: "✅";
-            margin-right: 10px;
-        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
+        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px; border-radius: 15px; max-width: 350px; text-align: center; border-top: 6px solid var(--gold); position: relative; }
+        
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: var(--card-bg); color: var(--text); }
+        .calc-btn { width: 100%; padding: 15px; background: var(--gold); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        .footer-note {
-            background: rgba(0,0,0,0.05);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        footer { 
-            background: var(--dark); 
-            color: white; 
-            text-align: center; 
-            padding: 30px; 
-            margin-top: 50px; 
-        }
+        footer { background: var(--dark); color: white; text-align: center; padding: 30px; margin-top: 50px; }
         footer a { color: var(--gold); text-decoration: none; }
 
         @media (max-width: 600px) {
             header { padding: 90px 20px 30px; }
             .logo-container { left: 50%; transform: translateX(-50%); top: 10px; }
-            .settings-menu { left: 50%; transform: translateX(-50%); top: 80px; }
-            .article-content { padding: 20px; }
-            h1.post-title { font-size: 24px; }
         }
     </style>
 </head>
@@ -248,7 +199,28 @@
     <a href="index.html" class="back-link" id="backBtn">← Վերադառնալ հաշվիչին</a>
 
     <article class="article-content" id="articleBody">
-        </article>
+    </article>
+</div>
+
+<div id="regModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="reg_title">📥 Գրանցում</h3>
+        <form id="regForm">
+            <input type="text" id="userName" placeholder="Անուն" data-placeholder="reg_name_ph" required>
+            <input type="email" id="userEmail" placeholder="Էլ. հասցե" data-placeholder="reg_email_ph" required>
+            <button type="submit" class="calc-btn" data-key="btn_save">Պահպանել</button>
+        </form>
+        <button onclick="closeModal('regModal')" style="background:none; color:gray; margin-top:15px; border:none; cursor:pointer;" data-key="btn_close">Փակել</button>
+    </div>
+</div>
+
+<div id="userDataModal" class="modal">
+    <div class="modal-content">
+        <h3 data-key="my_data_title">👤 Իմ Տվյալները</h3>
+        <div id="userDataContent" style="background: rgba(0,0,0,0.05); padding:15px; border-radius:8px; margin:15px 0; text-align:left;"></div>
+        <button onclick="closeModal('userDataModal')" class="calc-btn" data-key="btn_ok">Լավ</button>
+        <div id="dynamicActionBtn"></div>
+    </div>
 </div>
 
 <footer>
@@ -266,25 +238,33 @@
             menu_settings: "Կարգավորումներ",
             menu_night_mode: "🌙 Գիշերային ռեժիմ",
             privacy: "Գաղտնիություն",
+            reg_title: "📥 Գրանցում",
+            reg_name_ph: "Անուն",
+            reg_email_ph: "Էլ. հասցե",
+            btn_save: "Պահպանել",
+            btn_close: "Փակել",
+            my_data_title: "👤 Իմ Տվյալները",
+            btn_ok: "Լավ",
+            btn_clear: "Ջնջել ամբողջը",
             content: `
                 <h1 class="post-title">💰 Ինչպե՞ս խնայել Հայաստանում — Գործնական խորհուրդներ</h1>
-                <p class="intro">Հայաստանում խնայելը երբեմն բարդ է թվում՝ հաշվի առնելով գների աճը։ Սակայն ճիշտ մոտեցման դեպքում դա լիովին հնարավոր է։</p>
+                <p class="intro">Հայաստանում խնայելը երբեմն բարդ է թվում՝ հաշվի առնելով գների աճը, սակայն ճիշտ գործիքների դեպքում դա հնարավոր է։</p>
+                
                 <h2>Պարտադիր ծախսերի կառավարում</h2>
-                <p>Հայաստանում ձմռանը կոմունալ ծախսերը զգալիորեն ավելանում են: Խելամիտ է կատարել կանխավճարներ կամ խնայել ամռան ամիսներին:</p>
                 <div class="tip-box">
-                    <strong>Լայֆհաք.</strong> Օգտվեք Cashback համակարգերից, որոնք առաջարկում են հայաստանյան գրեթե բոլոր բանկերը:
+                    <strong>Լայֆհաք.</strong> Օգտվեք Cashback համակարգերից, որոնք առաջարկում են հայաստանյան գրեթե բոլոր բանկերը: Սա թույլ է տալիս ամսական հետ ստանալ ծախսերի մինչև 5-10%-ը:
                 </div>
-                <h2>Սնունդ և Կենցաղ</h2>
+
+                <h2>Check-list խնայողության համար</h2>
                 <ul class="check-list">
-                    <li>Օգտվեք մեծածախ շուկաներից</li>
-                    <li>Նախապատվությունը տվեք տեղական արտադրանքին</li>
-                    <li>Օգտագործեք զեղչային քարտերը</li>
+                    <li>Օգտագործեք կուտակային քարտեր սուպերմարկետներում:</li>
+                    <li>Վճարեք կոմունալները բանկային հավելվածներով՝ միջնորդավճարից խուսափելու համար:</li>
+                    <li>Հետևեք զեղչերին տեղական առցանց հարթակներում:</li>
                 </ul>
-                <div class="footer-note">Եզրակացություն։ Հայաստանում ֆինանսական կայունությունը պահանջում է հետևողականություն։</div>
             `
         },
         ru: {
-            mainSub: "Управляйте своими финансами с умом",
+            mainSub: "Управляйте финансами с умом",
             back: "← Вернуться к калькулятору",
             menu_user: "Пользователь",
             menu_my_data: "👤 МОИ ДАННЫЕ",
@@ -292,21 +272,29 @@
             menu_settings: "Настройки",
             menu_night_mode: "🌙 Ночной режим",
             privacy: "Конфиденциальность",
+            reg_title: "📥 Регистрация",
+            reg_name_ph: "Имя",
+            reg_email_ph: "Эл. почта",
+            btn_save: "Сохранить",
+            btn_close: "Закрыть",
+            my_data_title: "👤 Мои данные",
+            btn_ok: "Ок",
+            btn_clear: "Удалить всё",
             content: `
                 <h1 class="post-title">💰 Как экономить в Армении — Практические советы</h1>
-                <p class="intro">Экономия в Армении может казаться сложной из-за роста цен, но при правильном планировании это достижимо.</p>
+                <p class="intro">Экономия в Армении может показаться сложной из-за роста цен, но при правильном планировании это вполне реально.</p>
+                
                 <h2>Управление обязательными расходами</h2>
-                <p>Зимой коммунальные расходы в Армении значительно выше. Рекомендуется откладывать средства в летние месяцы.</p>
                 <div class="tip-box">
-                    <strong>Лайфхак:</strong> Используйте системы кэшбэка, которые предлагают почти все банки Армении.
+                    <strong>Лайфхак:</strong> Используйте системы кэшбэка, которые предлагают почти все банки Армении. Это позволяет возвращать до 5-10% от ежемесячных трат.
                 </div>
-                <h2>Продукты и быт</h2>
+
+                <h2>Чек-лист для эффективной экономии</h2>
                 <ul class="check-list">
-                    <li>Покупайте на оптовых рынках</li>
-                    <li>Отдавайте предпочтение местным продуктам</li>
-                    <li>Следите за сезонными скидками</li>
+                    <li>Пользуйтесь накопительными картами в крупных супермаркетах.</li>
+                    <li>Оплачивайте коммунальные услуги через приложения банков без комиссии.</li>
+                    <li>Следите за акциями и скидками на местных онлайн-площадках.</li>
                 </ul>
-                <div class="footer-note">Заключение: Финансовая стабильность в Армении требует дисциплины.</div>
             `
         },
         en: {
@@ -314,25 +302,33 @@
             back: "← Back to Calculator",
             menu_user: "User",
             menu_my_data: "👤 MY DATA",
-            menu_lang: "Language / Language",
+            menu_lang: "Language",
             menu_settings: "Settings",
             menu_night_mode: "🌙 Night Mode",
             privacy: "Privacy",
+            reg_title: "📥 Registration",
+            reg_name_ph: "Name",
+            reg_email_ph: "Email",
+            btn_save: "Save",
+            btn_close: "Close",
+            my_data_title: "👤 My Data",
+            btn_ok: "OK",
+            btn_clear: "Clear All",
             content: `
                 <h1 class="post-title">💰 How to Save Money in Armenia — Practical Tips</h1>
-                <p class="intro">Saving money in Armenia can be challenging due to rising costs, but with the right strategy, it is entirely possible.</p>
-                <h2>Managing Fixed Expenses</h2>
-                <p>In Armenia, utility costs increase significantly during winter. It is wise to set aside funds during the warmer months.</p>
+                <p class="intro">Saving money in Armenia might seem difficult with rising prices, but with the right financial tools, it is achievable.</p>
+                
+                <h2>Managing Essential Expenses</h2>
                 <div class="tip-box">
-                    <strong>Lifehack:</strong> Take advantage of Cashback systems offered by almost all Armenian banks.
+                    <strong>Lifehack:</strong> Take advantage of Cashback systems offered by almost all Armenian banks. This allows you to get back up to 5-10% of your monthly expenses.
                 </div>
-                <h2>Food and Household</h2>
+
+                <h2>Check-list for Effective Saving</h2>
                 <ul class="check-list">
-                    <li>Shop at wholesale markets</li>
-                    <li>Choose local products over imported ones</li>
-                    <li>Use supermarket loyalty cards</li>
+                    <li>Use loyalty and reward cards in local supermarkets.</li>
+                    <li>Pay utility bills through banking apps to avoid service fees.</li>
+                    <li>Track discounts and offers on local online marketplaces.</li>
                 </ul>
-                <div class="footer-note">Conclusion: Financial stability in Armenia requires careful planning.</div>
             `
         }
     };
@@ -348,6 +344,10 @@
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
             if (data[key]) el.innerText = data[key];
+        });
+        document.querySelectorAll('[data-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-placeholder');
+            if (data[key]) el.placeholder = data[key];
         });
     }
 
@@ -365,12 +365,44 @@
     }
 
     function showUserData() {
-        alert("Այստեղ կցուցադրվեն ձեր տվյալները։");
-        document.getElementById('logoMenu').classList.remove('show');
+        const savedName = localStorage.getItem('finSmartName');
+        const savedEmail = localStorage.getItem('finSmartEmail');
+        const contentDiv = document.getElementById('userDataContent');
+        const actionDiv = document.getElementById('dynamicActionBtn');
+        const lang = localStorage.getItem('lang') || 'am';
+        const langData = translations[lang];
+
+        toggleLogoMenu();
+
+        if (savedName && savedEmail) {
+            contentDiv.innerHTML = `<p><strong>${langData.reg_name_ph}:</strong> ${savedName}</p><p><strong>${langData.reg_email_ph}:</strong> ${savedEmail}</p>`;
+            actionDiv.innerHTML = `<button onclick="clearAllData()" class="calc-btn" style="background:#d9534f; margin-top:10px;">${langData.btn_clear}</button>`;
+            document.getElementById('userDataModal').style.display = 'block';
+        } else {
+            document.getElementById('regModal').style.display = 'block';
+        }
     }
 
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    function clearAllData() {
+        if(confirm("Ջնջե՞լ տվյալները:")) {
+            localStorage.removeItem('finSmartName');
+            localStorage.removeItem('finSmartEmail');
+            location.reload();
+        }
+    }
+
+    document.getElementById('regForm').onsubmit = function(e) {
+        e.preventDefault();
+        localStorage.setItem('finSmartName', document.getElementById('userName').value);
+        localStorage.setItem('finSmartEmail', document.getElementById('userEmail').value);
+        closeModal('regModal');
+        alert("Գրանցումը հաջողվեց:");
+    };
+
     window.onclick = function(e) {
-        if (!e.target.closest('.logo-container')) {
+        if (!e.target.closest('.logo-container') && !e.target.closest('.modal-content') && !e.target.closest('.settings-menu')) {
             document.getElementById('logoMenu').classList.remove('show');
         }
     };
@@ -382,5 +414,4 @@
 </script>
 
 </body>
-
 </html>
