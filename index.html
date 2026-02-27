@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
- 
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinSmart Armenia</title>
@@ -42,7 +42,6 @@
             position: relative;
         }
 
-        /* --- NEW MENU STYLE --- */
         .sub-nav {
             background: #252525;
             padding: 10px;
@@ -113,7 +112,7 @@
         .container { max-width: 850px; margin: 30px auto; padding: 0 20px; }
         .card { background: var(--card-bg); padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); margin-bottom: 30px; }
 
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: var(--card-bg); color: var(--text); }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: var(--card-bg); color: var(--text); }
 
         .calc-btn { width: 100%; padding: 15px; background: var(--gold); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-top: 10px; }
         .calc-btn:hover { background: #b8962d; transform: translateY(-2px); }
@@ -141,10 +140,11 @@
         .article-card { background: var(--card-bg); padding: 25px; border-radius: 12px; border-left: 6px solid var(--gold); margin-bottom: 20px; transition: 0.3s; cursor: pointer; text-decoration: none; display: block; color: inherit; }
         .article-card:hover { transform: translateX(8px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        /* MODALS */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); }
         .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px; border-radius: 15px; max-width: 400px; text-align: center; border-top: 6px solid var(--gold); position: relative; }
         .close-x { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #999; }
+
+        .currency-box { background: rgba(212, 175, 55, 0.05); padding: 15px; border-radius: 10px; border: 1px dashed var(--gold); margin-top: 15px; }
 
         footer { background: var(--dark); color: white; text-align: center; padding: 30px; margin-top: 50px; }
     </style>
@@ -189,13 +189,13 @@
     </div>
     
     <h1 id="mainTitle">FinSmart Armenia</h1>
-    <p id="mainSub">Կառավարեք ձեր ֆինանսները խելացի տարբերակով</p>
+    <p id="mainSub" data-key="main_sub">Կառավարեք ձեր ֆինանսները խելացի տարբերակով</p>
 </header>
 
 <div class="sub-nav">
-    <button class="nav-btn" onclick="openInfoModal('aboutModal')">Մեր մասին</button>
-    <button class="nav-btn" onclick="openInfoModal('whyModal')">Ինչու՞ օգտագործել FinSmart</button>
-    <button class="nav-btn" onclick="showPersonalAchievements()">Իմ նվաճումները</button>
+    <button class="nav-btn" onclick="openInfoModal('aboutModal')" data-key="btn_about">Մեր մասին</button>
+    <button class="nav-btn" onclick="openInfoModal('whyModal')" data-key="btn_why">Ինչու՞ օգտագործել FinSmart</button>
+    <button class="nav-btn" onclick="showPersonalAchievements()" data-key="btn_achievements">Իմ նվաճումները</button>
 </div>
 
 <div class="container">
@@ -222,6 +222,30 @@
                     <div class="progress-bar" id="myBar">0%</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 data-key="converter_title">💱 Արտարժույթի Փոխարկիչ (Live)</h3>
+        <div class="currency-box">
+            <input type="number" id="currencyAmount" placeholder="Գումար" value="1000">
+            <div style="display: flex; gap: 10px;">
+                <select id="fromCurrency">
+                    <option value="AMD">AMD (֏)</option>
+                    <option value="USD" selected>USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="RUB">RUB (₽)</option>
+                </select>
+                <span style="align-self: center;">➔</span>
+                <select id="toCurrency">
+                    <option value="AMD" selected>AMD (֏)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="RUB">RUB (₽)</option>
+                </select>
+            </div>
+            <button class="calc-btn" onclick="convertCurrency()" style="background: #252525;" data-key="btn_convert">Փոխարկել</button>
+            <div id="currencyResult" style="margin-top: 15px; font-weight: bold; font-size: 18px; text-align: center; color: var(--gold);"></div>
         </div>
     </div>
 
@@ -266,20 +290,20 @@
 <div id="aboutModal" class="modal">
     <div class="modal-content">
         <span class="close-x" onclick="closeInfoModal('aboutModal')">&times;</span>
-        <h2>Մեր մասին</h2>
-        <p>FinSmart-ը ձեր թվային ֆինանսական ուղեցույցն է Հայաստանում: Մեր նպատակն է սովորեցնել մարդկանց ճիշտ կառավարել իրենց բյուջեն, օգտագործելով արհեստական բանականության հնարավորությունները:</p>
+        <h2 data-key="modal_about_title">Մեր մասին</h2>
+        <p data-key="modal_about_text">FinSmart-ը ձեր թվային ֆինանսական ուղեցույցն է Հայաստանում: Մեր նպատակն է սովորեցնել մարդկանց ճիշտ կառավարել իրենց բյուջեն, օգտագործելով արհեստական բանականության հնարավորությունները:</p>
     </div>
 </div>
 
 <div id="whyModal" class="modal">
     <div class="modal-content">
         <span class="close-x" onclick="closeInfoModal('whyModal')">&times;</span>
-        <h2>Ինչու՞ օգտագործել FinSmart</h2>
+        <h2 data-key="modal_why_title">Ինչու՞ օգտագործել FinSmart</h2>
         <ul style="text-align: left; display: inline-block;">
-            <li>✅ Անհատական AI խորհրդատվություն</li>
-            <li>✅ Պարզ և հասանելի հաշվարկներ</li>
-            <li>✅ Տվյալների լիակատար գաղտնիություն</li>
-            <li>✅ Նպատակների իրագործման հետևում</li>
+            <li data-key="why_li1">✅ Անհատական AI խորհրդատվություն</li>
+            <li data-key="why_li2">✅ Պարզ և հասանելի հաշվարկներ</li>
+            <li data-key="why_li3">✅ Տվյալների լիակատար գաղտնիություն</li>
+            <li data-key="why_li4">✅ Նպատակների իրագործման հետևում</li>
         </ul>
     </div>
 </div>
@@ -287,7 +311,7 @@
 <div id="achievementsModal" class="modal">
     <div class="modal-content">
         <span class="close-x" onclick="closeInfoModal('achievementsModal')">&times;</span>
-        <h2>Իմ նվաճումները</h2>
+        <h2 data-key="modal_achievements_title">Իմ նվաճումները</h2>
         <div id="achievementsList"></div>
     </div>
 </div>
@@ -322,21 +346,30 @@
     </div>
 </div>
 
-<footer>&copy; 2026 FinSmart Armenia | <a href="privacy.html" style="color:var(--gold)" data-key="privacy">Գաղտնիություն</a></footer>
+<footer>
+    &copy; 2026 FinSmart Armenia | 
+    <a href="privacy.html" style="color:var(--gold)" data-key="privacy">Գաղտնիություն</a> | 
+    <a href="terms.html" style="color:var(--gold)" data-key="terms">Օգտագործման պայմաններ</a>
+</footer>
 
 <script>
-    // --- ALL OLD LOGIC KEPT ---
     const translations = {
         am: {
             main_sub: "Կառավարեք ձեր ֆինանսները խելացի տարբերակով",
             menu_user: "Օգտատեր", menu_my_data: "👤 ԻՄ ՏՎՅԱԼՆԵՐԸ", menu_lang: "Լեզու / Language", menu_settings: "Կարգավորումներ", menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            btn_about: "Մեր մասին", btn_why: "Ինչու՞ օգտագործել FinSmart", btn_achievements: "Իմ նվաճումները",
             calc_title: "📊 AI Ֆինանսական Օգնական", label_income: "Ամսական Եկամուտ (֏)", label_expenses: "Ամսական Ծախսեր (֏)", label_goal: "Խնայողության նպատակ (֏)",
             btn_calc: "Վերլուծել AI-ով", history_title: "📈 Գործողությունների Պատմություն", th_date: "Ամսաթիվ", th_inc: "Եկամուտ", th_exp: "Ծախս", th_trend: "Դինամիկա", th_action: "Գործողություն",
+            converter_title: "💱 Արտարժույթի Փոխարկիչ (Live)", btn_convert: "Փոխարկել",
             btn_clear_history: "🗑️ Ջնջել պատմությունը", btn_download: "📄 Ներբեռնել PDF",
             tip1_title: "1. Ինչպե՞ս սկսել խնայել զրոյից ➔", tip1_desc: "Բացահայտեք պարզ քայլեր ձեր առաջին խնայողությունները ստեղծելու համար:",
             tip2_title: "2. Ծախսերի օպտիմալացում ➔", tip2_desc: "Ինչպես կրճատել ավելորդ ծախսերը առանց կյանքի որակը փոխելու:",
             tip3_title: "3. Ներդրումներ Հայաստանում ➔", tip3_desc: "Ինչպե՞ս ստիպել գումարին աշխատել ձեզ համար:",
-            reg_title: "📥 Գրանցում", reg_name_ph: "Անուն", reg_email_ph: "Էլ. հասցե", btn_save: "Պահպանել", btn_close: "Փակել", my_data_title: "👤 Իմ Տվյալները", btn_ok: "Լավ", privacy: "Գաղտնիություն",
+            modal_about_title: "Մեր մասին", modal_about_text: "FinSmart-ը ձեր թվային ֆինանսական ուղեցույցն է Հայաստանում: Մեր նպատակն է սովորեցնել մարդկանց ճիշտ կառավարել իրենց բյուջեն, օգտագործելով արհեստական բանականության հնարավորությունները.",
+            modal_why_title: "Ինչու՞ օգտագործել FinSmart", why_li1: "✅ Անհատական AI խորհրդատվություն", why_li2: "✅ Պարզ և հասանելի հաշվարկներ", why_li3: "✅ Տվյալների լիակատար գաղտնիություն", why_li4: "✅ Նպատակների իրագործման հետևում",
+            modal_achievements_title: "Իմ նվաճումները", no_achievements: "Դուք դեռ չունեք նվաճումներ: Կատարեք ձեր առաջին հաշվարկը և սկսեք խնայել՝ ձեր առաջին կոչումը ստանալու համար: 💪", rank_label: "Ձեր կոչումը՝", actions_label: "Գրանցված գործողություններ՝",
+            reg_title: "📥 Գրանցում", reg_name_ph: "Անուն", reg_email_ph: "Էլ. հասցե", btn_save: "Պահպանել", btn_close: "Փակել", my_data_title: "👤 Իմ Տվյալները", btn_ok: "Լավ", 
+            privacy: "Գաղտնիություն", terms: "Օգտագործման պայմաններ",
             free_money: "Ազատ գումար", trend_up: "↑ աճ", trend_down: "↓ նվազում", no_reg: "Դուք դեռ գրանցված չեք:", btn_clear: "Ջնջել օգտատիրոջը", btn_reg_now: "Գրանցվել",
             goal_reached: "Դուք կհասնեք ձեր նպատակին", months: "ամսից", confirm_clear: "Համոզվա՞ծ եք, որ ուզում եք ջնջել ամբողջ պատմությունը:", progress_label: "Նպատակի իրագործում",
             levels: ["Սկսնակ 🥉", "Խնայող 🥈", "Ֆինանսական Վարպետ 🥇", "Լեգենդար Հաղթող 🏆"],
@@ -347,12 +380,18 @@
         ru: {
             main_sub: "Управляйте финансами с умом",
             menu_user: "Пользователь", menu_my_data: "👤 МОИ ДАННЫЕ", menu_lang: "Язык", menu_settings: "Настройки", menu_night_mode: "🌙 Ночной режим",
+            btn_about: "О нас", btn_why: "Почему FinSmart", btn_achievements: "Мои достижения",
             calc_title: "📊 AI Помощник", label_income: "Доход", label_expenses: "Расход", label_goal: "Цель",
             btn_calc: "Анализ AI", history_title: "📈 История", th_date: "Дата", th_inc: "Доход", th_exp: "Расход", th_trend: "Динамика", th_action: "Действие",
-            btn_clear_history: "🗑️ Очистить", btn_download: "📄 Скачать PDF", tip1_title: "1. Как начать копить ➔", tip1_desc: "Простые шаги для сбережений.",
+            converter_title: "💱 Конвертер валют (Live)", btn_convert: "Конвертировать",
+            btn_clear_history: "Очистить", btn_download: "📄 Скачать PDF", tip1_title: "1. Как начать копить ➔", tip1_desc: "Простые шаги для сбережений.",
             tip2_title: "2. Оптимизация ➔", tip2_desc: "Как сократить траты.",
             tip3_title: "3. Инвестиции ➔", tip3_desc: "Как заставить деньги работать.",
-            reg_title: "📥 Регистрация", btn_save: "Сохранить", btn_close: "Закрыть", my_data_title: "👤 Данные", btn_ok: "Ок", privacy: "Конфиденциальность",
+            modal_about_title: "О нас", modal_about_text: "FinSmart — ваш цифровой финансовый гид в Армении. Наша цель — научить людей правильно управлять своим бюджетом, используя возможности искусственного интеллекта.",
+            modal_why_title: "Почему стоит использовать FinSmart", why_li1: "✅ Персональные советы AI", why_li2: "✅ Простые и доступные расчеты", why_li3: "✅ Полная конфиденциальность", why_li4: "✅ Отслеживание целей",
+            modal_achievements_title: "Мои достижения", no_achievements: "У вас пока нет достижений. Сделайте первый расчет, чтобы получить звание! 💪", rank_label: "Ваше звание:", actions_label: "Всего операций:",
+            reg_title: "📥 Регистрация", btn_save: "Сохранить", btn_close: "Закрыть", my_data_title: "👤 Данные", btn_ok: "Ок", 
+            privacy: "Конфиденциальность", terms: "Условия использования",
             free_money: "Свободно", trend_up: "↑ рост", trend_down: "↓ вниз", no_reg: "Нет регистрации", btn_clear: "Удалить", btn_reg_now: "Регистрация",
             goal_reached: "Цель достижима через", months: "мес.", confirm_clear: "Удалить историю?", progress_label: "Прогресс",
             levels: ["Новичок 🥉", "Экономный 🥈", "Мастер Финансов 🥇", "Легендарный Победитель 🏆"],
@@ -363,12 +402,18 @@
         en: {
             main_sub: "Manage finances the smart way",
             menu_user: "User", menu_my_data: "👤 MY DATA", menu_lang: "Language", menu_settings: "Settings", menu_night_mode: "🌙 Night Mode",
+            btn_about: "About Us", btn_why: "Why FinSmart", btn_achievements: "My Achievements",
             calc_title: "📊 AI Assistant", label_income: "Income", label_expenses: "Expenses", label_goal: "Goal",
             btn_calc: "Analyze AI", history_title: "📈 History", th_date: "Date", th_inc: "Income", th_exp: "Expense", th_trend: "Trend", th_action: "Action",
+            converter_title: "💱 Currency Converter (Live)", btn_convert: "Convert",
             btn_clear_history: "🗑️ Clear", btn_download: "📄 Download PDF", tip1_title: "1. How to save ➔", tip1_desc: "Steps to save money.",
             tip2_title: "2. Optimization ➔", tip2_desc: "How to cut costs.",
             tip3_title: "3. Investing ➔", tip3_desc: "Make money work.",
-            reg_title: "📥 Registration", btn_save: "Save", btn_close: "Close", my_data_title: "👤 My Data", btn_ok: "OK", privacy: "Privacy",
+            modal_about_title: "About Us", modal_about_text: "FinSmart is your digital financial guide in Armenia. Our goal is to teach people how to manage their budget correctly using AI.",
+            modal_why_title: "Why use FinSmart", why_li1: "✅ Personal AI advice", why_li2: "✅ Simple calculations", why_li3: "✅ Full privacy", why_li4: "✅ Goal tracking",
+            modal_achievements_title: "My Achievements", no_achievements: "No achievements yet. Make your first calculation to earn a title! 💪", rank_label: "Your Rank:", actions_label: "Total Operations:",
+            reg_title: "📥 Registration", btn_save: "Save", btn_close: "Close", my_data_title: "👤 My Data", btn_ok: "OK", 
+            privacy: "Privacy", terms: "Terms of Service",
             free_money: "Free money", trend_up: "↑ up", trend_down: "↓ down", no_reg: "No registration", btn_clear: "Delete", btn_reg_now: "Register",
             goal_reached: "Goal reached in", months: "months", confirm_clear: "Clear history?", progress_label: "Goal Progress",
             levels: ["Beginner 🥉", "Saver 🥈", "Finance Master 🥇", "Legendary Winner 🏆"],
@@ -397,8 +442,8 @@
             const key = el.getAttribute('data-placeholder');
             if (langData[key]) el.placeholder = langData[key];
         });
-        document.getElementById('mainSub').innerText = langData.main_sub;
-
+        
+        // Update achievements if modal is open
         const lvlIdx = parseInt(localStorage.getItem('finLevel')) || 0;
         if (lvlIdx > 0) {
             document.getElementById('achievementBadge').style.display = 'flex';
@@ -413,7 +458,6 @@
         localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
     }
 
-    // --- NEW MODAL FUNCTIONS ---
     function openInfoModal(id) { document.getElementById(id).style.display = 'block'; }
     function closeInfoModal(id) { document.getElementById(id).style.display = 'none'; }
     
@@ -424,15 +468,15 @@
         const langData = translations[currentLang];
 
         if (lvlIdx === 0 && history.length === 0) {
-            container.innerHTML = `<p style="padding:20px;">Դուք դեռ չունեք նվաճումներ: Կատարեք ձեր առաջին հաշվարկը և սկսեք խնայել՝ ձեր առաջին կոչումը ստանալու համար: 💪</p>`;
+            container.innerHTML = `<p style="padding:20px;">${langData.no_achievements}</p>`;
         } else {
-            const currentRank = lvlIdx > 0 ? langData.levels[lvlIdx-1] : "Դեռ չկա";
+            const currentRank = lvlIdx > 0 ? langData.levels[lvlIdx-1] : "—";
             container.innerHTML = `
                 <div style="padding:20px;">
                     <h1 style="font-size:60px;">🏆</h1>
-                    <h3>Ձեր կոչումը՝</h3>
+                    <h3>${langData.rank_label}</h3>
                     <h2 style="color:var(--gold);">${currentRank}</h2>
-                    <p>Գրանցված գործողություններ՝ ${history.length}</p>
+                    <p>${langData.actions_label} ${history.length}</p>
                 </div>
             `;
         }
@@ -536,6 +580,26 @@
         }
     }
 
+    async function convertCurrency() {
+        const amount = document.getElementById('currencyAmount').value;
+        const from = document.getElementById('fromCurrency').value;
+        const to = document.getElementById('toCurrency').value;
+        const resDiv = document.getElementById('currencyResult');
+
+        if (!amount || amount <= 0) return;
+
+        resDiv.innerText = "...";
+        try {
+            const response = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+            const data = await response.json();
+            const rate = data.rates[to];
+            const converted = (amount * rate).toFixed(2);
+            resDiv.innerText = `${Number(amount).toLocaleString()} ${from} = ${Number(converted).toLocaleString()} ${to}`;
+        } catch (error) {
+            resDiv.innerText = "Error loading rates";
+        }
+    }
+
     function downloadPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -608,22 +672,8 @@
         applyLanguage();
     };
 </script>
- <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #27ae60; margin: 20px auto; max-width: 550px; font-family: sans-serif; text-align: center;">
-    <h2 style="color: #27ae60; margin-top: 0;">💰 Աշխատիր մեզ հետ</h2>
-    <p style="color: #444;">Միացիր մեր 10 հոգանոց թիմին և սկսիր գումար վաստակել հարցումների միջոցով:</p>
-    
-    <a href="https://www.ysense.com/?rb=230579290" target="_blank" 
-       style="background: #27ae60; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; margin: 15px 0;">
-       ԳՐԱՆՑՎԵԼ ԵՎ ՍԿՍԵԼ
-    </a>
-    
-    <p style="font-size: 0.85rem; color: #7f8c8d;">
-        * Հիշիր հաստատել Email-դ գրանցվելուց հետո:
-    </p>
-</div>
 </body>
 </html>
-
 
 
 
