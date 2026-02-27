@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-5498044208644459">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5498044208644459"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="metaTitle">Որտե՞ղ ներդնել գումարը - FinSmart Armenia</title>
@@ -75,15 +76,18 @@
             background: rgba(0,0,0,0.05); text-align: left;
         }
 
-        .settings-menu button {
+        /* Ավելացված ոճ հղման համար */
+        .settings-menu button, .settings-menu a {
             display: block; width: 100%; padding: 12px 15px;
             color: var(--text); text-decoration: none; font-size: 14px;
             background: none; border: none; text-align: left;
             cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.05);
             transition: 0.2s;
+            box-sizing: border-box;
+            font-family: inherit;
         }
 
-        .settings-menu button:hover { background: var(--gold); color: white; }
+        .settings-menu button:hover, .settings-menu a:hover { background: var(--gold); color: white; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
@@ -182,6 +186,7 @@
         <button onclick="changeLang('en')">🇺🇸 ENGLISH</button>
         <h4 data-key="menu_settings">Կարգավորումներ</h4>
         <button onclick="toggleDarkMode()" data-key="menu_night_mode">🌙 Գիշերային ռեժիմ</button>
+        <a href="terms.html" data-key="menu_terms">📜 Օգտագործման պայմաններ</a>
     </div>
 
     <h1 id="headerTitle">Ներդրումներ Հայաստանում</h1>
@@ -231,6 +236,7 @@
             menu_lang: "Լեզու / Language",
             menu_settings: "Կարգավորումներ",
             menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            menu_terms: "📜 Օգտագործման պայմաններ",
             privacy: "Գաղտնիություն",
             reg_title: "📥 Գրանցում",
             reg_name_ph: "Անուն",
@@ -269,6 +275,7 @@
             menu_lang: "Язык",
             menu_settings: "Настройки",
             menu_night_mode: "🌙 Ночной режим",
+            menu_terms: "📜 Условия использования",
             privacy: "Конфиденциальность",
             reg_title: "📥 Регистрация",
             reg_name_ph: "Имя",
@@ -307,6 +314,7 @@
             menu_lang: "Language",
             menu_settings: "Settings",
             menu_night_mode: "🌙 Night Mode",
+            menu_terms: "📜 Terms of Use",
             privacy: "Privacy",
             reg_title: "📥 Registration",
             reg_name_ph: "Name",
