@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-<meta name="google-adsense-account" content="ca-pub-5498044208644459">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5498044208644459"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="metaTitle">Ինչպե՞ս սկսել խնայել զրոյից - FinSmart Armenia</title>
@@ -42,6 +43,28 @@
             position: relative;
         }
 
+        .achievement-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: none;
+            background: rgba(212, 175, 55, 0.15);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid var(--gold);
+            align-items: center;
+            gap: 10px;
+            animation: bounceIn 1s ease;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            z-index: 105;
+        }
+        .achievement-badge span { color: var(--gold); font-weight: bold; font-size: 13px; }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
         .logo-container {
             position: absolute;
             top: 10px;
@@ -75,15 +98,16 @@
             background: rgba(0,0,0,0.05); text-align: left;
         }
 
-        .settings-menu button {
+        .settings-menu button, .settings-menu a {
             display: block; width: 100%; padding: 12px 15px;
             color: var(--text); text-decoration: none; font-size: 14px;
             background: none; border: none; text-align: left;
             cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.05);
             transition: 0.2s;
+            box-sizing: border-box;
         }
 
-        .settings-menu button:hover { background: var(--gold); color: white; }
+        .settings-menu button:hover, .settings-menu a:hover { background: var(--gold); color: white; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
@@ -162,6 +186,10 @@
 <body>
 
 <header>
+    <div id="achievementBadge" class="achievement-badge">
+        <span id="badgeText"></span>
+    </div>
+
     <div class="logo-container" onclick="toggleLogoMenu()">
         <svg class="logo-svg" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
             <rect width="100%" height="100%" fill="rgb(26,26,26)"/>
@@ -194,6 +222,7 @@
         <button onclick="changeLang('en')">🇺🇸 ENGLISH</button>
         <h4 data-key="menu_settings">Կարգավորումներ</h4>
         <button onclick="toggleDarkMode()" data-key="menu_night_mode">🌙 Գիշերային ռեժիմ</button>
+        <a href="terms.html" data-key="menu_terms">📜 Օգտագործման պայմաններ</a>
     </div>
 
     <h1>FinSmart Armenia</h1>
@@ -242,6 +271,7 @@
             menu_lang: "Լեզու / Language",
             menu_settings: "Կարգավորումներ",
             menu_night_mode: "🌙 Գիշերային ռեժիմ",
+            menu_terms: "📜 Օգտագործման պայմաններ",
             privacy: "Գաղտնիություն",
             reg_title: "📥 Գրանցում",
             reg_name_ph: "Անուն",
@@ -251,24 +281,17 @@
             my_data_title: "👤 Իմ Տվյալները",
             btn_ok: "Լավ",
             btn_clear: "Ջնջել ամբողջը",
-            btn_reg_now: "Գրանցվել",
-            no_reg: "Դուք դեռ գրանցված չեք:",
+            levels: ["Սկսնակ 🥉", "Խնայող 🥈", "Ֆինանսական Վարպետ 🥇", "Լեգենդար Հաղթող 🏆"],
             content: `
                 <h1 class="post-title">💰 Ինչպե՞ս սկսել խնայել զրոյից — Գործնական ուղեցույց</h1>
                 <p class="intro">Շատերը կարծում են, թե խնայելը հնարավոր է միայն մեծ եկամուտ ունենալու դեպքում։ Իրականում դա սովորություն է, որը կարելի է զարգացնել ցանկացած բյուջեով:</p>
-                
                 <div class="step-card">
                     <h2>Քայլ 1. Ծախսերի մանրակրկիտ վերահսկում</h2>
-                    <p>Առաջին քայլը ֆինանսական աուդիտն է։ Մեկ ամսվա ընթացքում գրանցիր բոլոր ծախսերդ, նույնիսկ ամենափոքր գնումները։ Սա կօգնի հասկանալ, թե ուր է «փախչում» ձեր գումարը։</p>
+                    <p>Առաջին քայլը ֆինանսական աուդիտն է։ Մեկ ամսվա ընթացքում գրանցիր բոլոր ծախսերդ, նույնիսկ ամենափոքր գնումները։</p>
                 </div>
-
-                <div class="highlight-box">
-                    <strong>💡 Խորհուրդ.</strong> Օգտագործեք բանկային հավելվածների "Analytics" բաժինը՝ ծախսերը ըստ կատեգորիաների տեսնելու համար։
-                </div>
-
                 <div class="step-card">
                     <h2>Քայլ 2. 50/30/20 կանոնի կիրառումը</h2>
-                    <p>Սա ամենաարդյունավետ բանաձևն է. եկամտի 50%-ը ուղղեք կարիքներին (վարձ, սնունդ), 30%-ը՝ ցանկություններին, իսկ 20%-ը՝ պարտադիր խնայողությանը կամ պարտքերի մարմանը:</p>
+                    <p>Սա ամենաարդյունավետ բանաձևն է. եկամտի 50%-ը ուղղեք կարիքներին, 30%-ը՝ ցանկություններին, իսկ 20%-ը՝ խնայողությանը:</p>
                 </div>
             `
         },
@@ -280,6 +303,7 @@
             menu_lang: "Язык / Language",
             menu_settings: "Настройки",
             menu_night_mode: "🌙 Ночной режим",
+            menu_terms: "📜 Условия использования",
             privacy: "Конфиденциальность",
             reg_title: "📥 Регистрация",
             reg_name_ph: "Имя",
@@ -289,24 +313,17 @@
             my_data_title: "👤 Мои данные",
             btn_ok: "Ок",
             btn_clear: "Удалить всё",
-            btn_reg_now: "Зарегистрироваться",
-            no_reg: "Вы еще не зарегистрированы:",
+            levels: ["Новичок 🥉", "Экономный 🥈", "Мастер Финансов 🥇", "Легендарный Победитель 🏆"],
             content: `
                 <h1 class="post-title">💰 Как начать копить с нуля — Практическое руководство</h1>
-                <p class="intro">Многие ошибочно полагают, что копить можно только при огромных доходах. На самом деле это полезная финансовая привычка, которую можно развить при любом уровне бюджета.</p>
-                
+                <p class="intro">Многие ошибочно полагают, что копить можно только при огромных доходах. Это полезная финансовая привычка.</p>
                 <div class="step-card">
-                    <h2>Шаг 1. Тщательный контроль всех расходов</h2>
-                    <p>Первый шаг к накоплениям — финансовый аудит. В течение месяца записывайте абсолютно все свои траты, даже самые мелкие покупки. Это поможет точно понять, куда именно «уходят» ваши деньги.</p>
+                    <h2>Шаг 1. Контроль расходов</h2>
+                    <p>Записывайте абсолютно все свои траты в течение месяца.</p>
                 </div>
-
-                <div class="highlight-box">
-                    <strong>💡 Совет:</strong> Используйте раздел «Аналитика» в вашем мобильном банковском приложении, чтобы видеть детальные расходы по категориям в реальном времени.</p>
-                </div>
-
                 <div class="step-card">
-                    <h2>Шаг 2. Применение популярного правила 50/30/20</h2>
-                    <p>Это одна из самых эффективных формул: направляйте 50% дохода на основные нужды (аренда, еда), 30% — на личные желания и 20% — на обязательные сбережения или инвестиции.</p>
+                    <h2>Шаг 2. Правило 50/30/20</h2>
+                    <p>50% дохода на нужды, 30% на желания и 20% на сбережения.</p>
                 </div>
             `
         },
@@ -318,6 +335,7 @@
             menu_lang: "Language",
             menu_settings: "Settings",
             menu_night_mode: "🌙 Night Mode",
+            menu_terms: "📜 Terms of Use",
             privacy: "Privacy",
             reg_title: "📥 Registration",
             reg_name_ph: "Name",
@@ -327,24 +345,17 @@
             my_data_title: "👤 My Data",
             btn_ok: "OK",
             btn_clear: "Clear All",
-            btn_reg_now: "Register Now",
-            no_reg: "Not registered yet:",
+            levels: ["Beginner 🥉", "Saver 🥈", "Finance Master 🥇", "Legendary Winner 🏆"],
             content: `
-                <h1 class="post-title">💰 How to Start Saving from Scratch — Practical Guide</h1>
-                <p class="intro">Many people mistakenly believe that saving is only possible with a huge income. In reality, it is a financial habit that can be built on almost any budget level.</p>
-                
+                <h1 class="post-title">💰 How to Start Saving from Scratch</h1>
+                <p class="intro">Saving is a financial habit that can be built on almost any budget level.</p>
                 <div class="step-card">
-                    <h2>Step 1. Meticulous Expense Tracking</h2>
-                    <p>The first step to saving is a full financial audit. For one month, record every single expense, even the smallest daily purchases. This helps you realize where your money is actually "leaking."</p>
+                    <h2>Step 1. Tracking</h2>
+                    <p>Record every single expense for one month.</p>
                 </div>
-
-                <div class="highlight-box">
-                    <strong>💡 Tip:</strong> Use the "Analytics" section of your mobile banking application to see your monthly spending broken down by category in real-time.</p>
-                </div>
-
                 <div class="step-card">
-                    <h2>Step 2. Applying the Global 50/30/20 Rule</h2>
-                    <p>This is a highly effective formula for success: allocate 50% of your income to needs (rent, food), 30% to personal wants, and 20% to mandatory savings or debt repayment.</p>
+                    <h2>Step 2. 50/30/20 Rule</h2>
+                    <p>50% needs, 30% wants, 20% savings.</p>
                 </div>
             `
         }
@@ -366,6 +377,14 @@
             const key = el.getAttribute('data-placeholder');
             if (data[key]) el.placeholder = data[key];
         });
+
+        const lvlIdx = parseInt(localStorage.getItem('finLevel')) || 0;
+        const badge = document.getElementById('achievementBadge');
+        const badgeText = document.getElementById('badgeText');
+        if (lvlIdx > 0) {
+            badge.style.display = 'flex';
+            badgeText.innerText = data.levels[lvlIdx - 1];
+        }
     }
 
     function changeLang(lang) {
@@ -388,9 +407,7 @@
         const actionDiv = document.getElementById('dynamicActionBtn');
         const lang = localStorage.getItem('lang') || 'am';
         const langData = translations[lang];
-
         toggleLogoMenu();
-
         if (savedName && savedEmail) {
             contentDiv.innerHTML = `<p><strong>${langData.reg_name_ph}:</strong> ${savedName}</p><p><strong>${langData.reg_email_ph}:</strong> ${savedEmail}</p>`;
             actionDiv.innerHTML = `<button onclick="clearAllData()" class="calc-btn" style="background:#d9534f; margin-top:10px;">${langData.btn_clear}</button>`;
@@ -404,8 +421,7 @@
 
     function clearAllData() {
         if(confirm("Ջնջե՞լ տվյալները:")) {
-            localStorage.removeItem('finSmartName');
-            localStorage.removeItem('finSmartEmail');
+            localStorage.clear();
             location.reload();
         }
     }
@@ -426,5 +442,4 @@
 
 </body>
 </html>
-
 
